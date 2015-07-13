@@ -16,8 +16,9 @@ repositories {
 }
 
 dependencies {
-	compile 'com.jgoodies:looks:2.2.2'
-    compile 'com.github.insubstantial:flamingo:7.+'
+	//compile 'commons-cli:commons-cli:1.+'
+	//compile 'com.jgoodies:looks:2.2.2'
+    //compile 'com.github.insubstantial:flamingo:7.+'
     //compile 'de.sciss:weblaf:1.28'
     
 	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.8.+'
