@@ -13,7 +13,7 @@ class XplnImporterTest {
 	
 	@BeforeClass
 	def static void getTimetable() {
-		timetable = new XplnImporter().load(XplnImporterTest.getResource("test.ods"))
+		timetable = new XplnImporter().load(XplnImporterTest.getResource("large_xpln.ods"))
 	}
 	
 	@Test
