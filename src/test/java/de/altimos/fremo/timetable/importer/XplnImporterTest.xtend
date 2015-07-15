@@ -1,4 +1,4 @@
-package de.altimos.fremo.timetable.xpln
+package de.altimos.fremo.timetable.importer
 
 import org.jopendocument.util.TimeUtils
 import org.junit.Test
@@ -7,13 +7,13 @@ import static org.junit.Assert.*
 import org.junit.BeforeClass
 import de.altimos.fremo.timetable.basic.BasicTimetable
 
-class XplnTest {
+class XplnImporterTest {
 	
 	var static BasicTimetable timetable
 	
 	@BeforeClass
 	def static void getTimetable() {
-		timetable = new Xpln().load(XplnTest.getResource("test.ods"))
+		timetable = new XplnImporter().load(XplnImporterTest.getResource("test.ods"))
 	}
 	
 	@Test

@@ -1,4 +1,4 @@
-package de.altimos.fremo.timetable.xpln
+package de.altimos.fremo.timetable.importer
 
 import java.net.URL
 import java.nio.file.NoSuchFileException
@@ -14,7 +14,7 @@ import de.altimos.fremo.timetable.basic.BasicTimetableEntry
 import de.altimos.fremo.timetable.basic.BasicTrack
 import de.altimos.fremo.timetable.basic.BasicTrain
 
-class Xpln {
+class XplnImporter {
 	
 	val timetable = new BasicTimetable
 	
