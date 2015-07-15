@@ -64,11 +64,11 @@ class XplnImporter {
 		}
 	}
 	
-	def private loadTrains(Sheet it) {
-		(0 .. rowCount)
-			.map[i| i -> getCellAt(8, i) ]
-			.takeWhile[c| !(c.value.value as String).empty ]
-			.forEach[c| loadTrainCell(c.key, c.value) ]
+	def private loadTrains(Sheet sheet) {
+		(0 .. sheet.rowCount)
+			.map[ it -> sheet.getCellAt(8, it) ]
+			.takeWhile[ !(value.value as String).empty ]
+			.forEach[ sheet.loadTrainCell(key, value) ]
 	}
 	
 	def private loadTrainCell(Sheet it, int rowIndex, Cell<SpreadSheet> cell) {
