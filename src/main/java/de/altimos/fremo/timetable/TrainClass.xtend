@@ -1,5 +1,5 @@
 package de.altimos.fremo.timetable
 
-interface ITrainClass {
+interface TrainClass {
 	def String getName()
 }

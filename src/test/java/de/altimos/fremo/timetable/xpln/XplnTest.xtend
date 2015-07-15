@@ -4,13 +4,20 @@ import org.jopendocument.util.TimeUtils
 import org.junit.Test
 
 import static org.junit.Assert.*
+import org.junit.BeforeClass
+import de.altimos.fremo.timetable.basic.BasicTimetable
 
 class XplnTest {
 	
+	var static BasicTimetable timetable
+	
+	@BeforeClass
+	def static void getTimetable() {
+		timetable = new Xpln().load(XplnTest.getResource("test.ods"))
+	}
+	
 	@Test
 	def void testTrainDefParse() {
-		val timetable = new Xpln().load(class.getResource("test.ods"))
-		
 		assertEquals(86, timetable.trains.length)
 		
 		timetable.trains.get(0) => [
@@ -22,8 +29,6 @@ class XplnTest {
 	
 	@Test
 	def void testTimetableParse() {
-		val timetable = new Xpln().load(class.getResource("test.ods"))
-		
 		assertTrue(timetable.trains.length > 0)
 		
 		timetable.trains.get(0) => [
@@ -48,8 +53,6 @@ class XplnTest {
 	
 	@Test
 	def void testStationParse() {
-		val timetable = new Xpln().load(class.getResource("test.ods"))
-		
 		assertEquals(16, timetable.stations.length)
 		
 		timetable.stations.get(0) => [
@@ -60,8 +63,6 @@ class XplnTest {
 	
 	@Test
 	def void testStationTrackParse() {
-		val timetable = new Xpln().load(class.getResource("test.ods"))
-		
 		assertEquals(16, timetable.stations.length)
 		
 		timetable.stations.get(0) => [
@@ -71,6 +72,23 @@ class XplnTest {
 			tracks.get(0) => [
 				assertEquals("1", name)
 				assertSame(timetable.stations.get(0), station)
+			]
+		]
+	}
+	
+	@Test
+	def void testTimetableEntryNextPrev() {
+		assertTrue(timetable.trains.length > 0)
+		
+		timetable.trains.get(0) => [
+			assertTrue(name == "FD 61")
+			
+			val tes = timetableEntries
+			assertTrue(tes.length >= 3)
+			
+			tes.get(1) => [
+				assertSame(tes.get(0), prev)
+				assertSame(tes.get(2), next)
 			]
 		]
 	}

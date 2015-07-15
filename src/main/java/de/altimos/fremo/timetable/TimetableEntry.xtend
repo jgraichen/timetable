@@ -2,12 +2,12 @@ package de.altimos.fremo.timetable
 
 import javax.xml.datatype.Duration
 
-interface ITimetableEntry {
-	def ITrain getTrain()
-	def ITrack getTrack()
+interface TimetableEntry {
+	def Train getTrain()
+	def Track getTrack()
 	def Duration getArrival()
 	def Duration getDeparture()
 	def String getRemark()
-	def ITimetableEntry next()
-	def ITimetableEntry prev()
+	def TimetableEntry getNext()
+	def TimetableEntry getPrev()
 }

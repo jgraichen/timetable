@@ -1,7 +1,5 @@
 package de.altimos.fremo.timetable.xpln
 
-import de.altimos.fremo.timetable.basic.Timetable
-import de.altimos.fremo.timetable.basic.Train
 import java.net.URL
 import java.nio.file.NoSuchFileException
 import org.jopendocument.dom.ODPackage
@@ -9,14 +7,16 @@ import org.jopendocument.dom.spreadsheet.Sheet
 import org.jopendocument.dom.spreadsheet.SpreadSheet
 import org.jopendocument.dom.spreadsheet.Cell
 import java.math.BigDecimal
-import de.altimos.fremo.timetable.basic.Station
-import de.altimos.fremo.timetable.basic.Track
-import de.altimos.fremo.timetable.basic.TimetableEntry
 import javax.xml.datatype.Duration
+import de.altimos.fremo.timetable.basic.BasicStation
+import de.altimos.fremo.timetable.basic.BasicTimetable
+import de.altimos.fremo.timetable.basic.BasicTimetableEntry
+import de.altimos.fremo.timetable.basic.BasicTrack
+import de.altimos.fremo.timetable.basic.BasicTrain
 
 class Xpln {
 	
-	val timetable = new Timetable
+	val timetable = new BasicTimetable
 	
 	new () {
 		
@@ -50,7 +50,7 @@ class Xpln {
 				val name   = getCellAt(0, rowIndex).value.toString
 				val remark = getCellAt(4, rowIndex).value.toString
 				
-				timetable.stations.add(new Station(name, remark))
+				timetable.stations.add(new BasicStation(name, remark))
 			}
 			case "Track": {
 				val station = getCellAt(0, rowIndex).value.toString
@@ -58,7 +58,7 @@ class Xpln {
 				val remark  = getCellAt(7, rowIndex).value.toString
 				
 				timetable.stations.findFirst[s| s.name == station ] => [
-					tracks.add(new Track(it, name, remark))
+					tracks.add(new BasicTrack(it, name, remark))
 				]
 			}
 		}
@@ -78,7 +78,7 @@ class Xpln {
 				val name        = getCellAt(9, rowIndex).value.toString
 				val description = getCellAt(10, rowIndex).value.toString
 				
-				timetable.trains.add(new Train(number, name, description))
+				timetable.trains.add(new BasicTrain(number, name, description))
 			}
 			case "timetable": {
 				val trainRef   = (getCellAt(0, rowIndex).value as BigDecimal).intValue
@@ -93,7 +93,14 @@ class Xpln {
 				val station = timetable.stations.findFirst[name == stationRef]
 				val track   = station.tracks.findFirst[name == trackRef]
 				
-				val entry = new TimetableEntry(train, track, train.timetableEntries.length, arrival, departure, remark)
+				val prev = train.timetableEntries.last
+				val entry = new BasicTimetableEntry(train, track, prev, arrival, departure, remark)
+				
+				if(prev != null) {
+					if(prev instanceof BasicTimetableEntry) {
+						prev.next = entry	
+					}
+				}
 				
 				train.timetableEntries.add(entry)
 				station.timetableEntries.add(entry)

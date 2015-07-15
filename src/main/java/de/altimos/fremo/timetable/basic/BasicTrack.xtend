@@ -1,10 +1,10 @@
 package de.altimos.fremo.timetable.basic
 
-import de.altimos.fremo.timetable.ITrack
 import org.eclipse.xtend.lib.annotations.Accessors
-import de.altimos.fremo.timetable.IStation
+import de.altimos.fremo.timetable.Station
+import de.altimos.fremo.timetable.Track
 
-class Track implements ITrack {
+class BasicTrack implements Track {
 	
 	@Accessors(PUBLIC_GETTER)
 	var String name
@@ -13,9 +13,9 @@ class Track implements ITrack {
 	var String remark
 	
 	@Accessors(PUBLIC_GETTER)
-	var IStation station
+	var Station station
 	
-	new(IStation station, String name, String remark) {
+	new(Station station, String name, String remark) {
 		this.name = name
 		this.remark = remark
 		this.station = station
