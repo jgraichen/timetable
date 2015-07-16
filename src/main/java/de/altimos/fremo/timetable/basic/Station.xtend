@@ -3,11 +3,11 @@ package de.altimos.fremo.timetable.basic
 import java.util.ArrayList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import de.altimos.fremo.timetable.Station
-import de.altimos.fremo.timetable.TimetableEntry
-import de.altimos.fremo.timetable.Track
+import de.altimos.fremo.timetable.IStation
+import de.altimos.fremo.timetable.ITimetableEntry
+import de.altimos.fremo.timetable.ITrack
 
-class BasicStation implements Station {
+class Station implements IStation {
 	
 	@Accessors(PUBLIC_GETTER)
 	var String name
@@ -16,10 +16,10 @@ class BasicStation implements Station {
 	var String remark
 	
 	@Accessors(PUBLIC_GETTER)
-	val List<Track> tracks = new ArrayList
+	val List<ITrack> tracks = new ArrayList
 	
 	@Accessors(PUBLIC_GETTER)
-	val List<TimetableEntry> timetableEntries = new ArrayList
+	val List<ITimetableEntry> timetableEntries = new ArrayList
 	
 	new(String name, String remark) {
 		this.name = name

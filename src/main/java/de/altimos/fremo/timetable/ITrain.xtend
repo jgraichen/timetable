@@ -2,9 +2,9 @@ package de.altimos.fremo.timetable
 
 import java.util.List
 
-interface Station {
+interface ITrain {
+	def int getNumber()
 	def String getName()
 	def String getRemark()
-	def List<Track> getTracks()
-	def List<TimetableEntry> getTimetableEntries()
+	def List<ITimetableEntry> getTimetableEntries()
 }

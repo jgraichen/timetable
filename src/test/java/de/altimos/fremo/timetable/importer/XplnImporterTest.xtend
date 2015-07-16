@@ -5,11 +5,11 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 import org.junit.BeforeClass
-import de.altimos.fremo.timetable.basic.BasicTimetable
+import de.altimos.fremo.timetable.basic.Timetable
 
 class XplnImporterTest {
 	
-	var static BasicTimetable timetable
+	var static Timetable timetable
 	
 	@BeforeClass
 	def static void getTimetable() {

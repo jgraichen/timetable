@@ -1,7 +1,7 @@
 package de.altimos.fremo.timetable
 
-interface Track {
+interface ITrack {
 	def String getName()
 	def String getRemark()
-	def Station getStation()
+	def IStation getStation()
 }

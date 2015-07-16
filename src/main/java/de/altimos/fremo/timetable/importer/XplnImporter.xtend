@@ -8,15 +8,15 @@ import org.jopendocument.dom.spreadsheet.SpreadSheet
 import org.jopendocument.dom.spreadsheet.Cell
 import java.math.BigDecimal
 import javax.xml.datatype.Duration
-import de.altimos.fremo.timetable.basic.BasicStation
-import de.altimos.fremo.timetable.basic.BasicTimetable
-import de.altimos.fremo.timetable.basic.BasicTimetableEntry
-import de.altimos.fremo.timetable.basic.BasicTrack
-import de.altimos.fremo.timetable.basic.BasicTrain
+import de.altimos.fremo.timetable.basic.Station
+import de.altimos.fremo.timetable.basic.Timetable
+import de.altimos.fremo.timetable.basic.Track
+import de.altimos.fremo.timetable.basic.TimetableEntry
+import de.altimos.fremo.timetable.basic.Train
 
 class XplnImporter {
 	
-	val timetable = new BasicTimetable
+	val timetable = new Timetable
 	
 	new () {
 		
@@ -50,7 +50,7 @@ class XplnImporter {
 				val name   = getCellAt(0, rowIndex).value.toString
 				val remark = getCellAt(4, rowIndex).value.toString
 				
-				timetable.stations.add(new BasicStation(name, remark))
+				timetable.stations.add(new Station(name, remark))
 			}
 			case "Track": {
 				val station = getCellAt(0, rowIndex).value.toString
@@ -58,7 +58,7 @@ class XplnImporter {
 				val remark  = getCellAt(7, rowIndex).value.toString
 				
 				timetable.stations.findFirst[s| s.name == station ] => [
-					tracks.add(new BasicTrack(it, name, remark))
+					tracks.add(new Track(it, name, remark))
 				]
 			}
 		}
@@ -78,7 +78,7 @@ class XplnImporter {
 				val name        = getCellAt(9, rowIndex).value.toString
 				val description = getCellAt(10, rowIndex).value.toString
 				
-				timetable.trains.add(new BasicTrain(number, name, description))
+				timetable.trains.add(new Train(number, name, description))
 			}
 			case "timetable": {
 				val trainRef   = (getCellAt(0, rowIndex).value as BigDecimal).intValue
@@ -94,10 +94,10 @@ class XplnImporter {
 				val track   = station.tracks.findFirst[name == trackRef]
 				
 				val prev = train.timetableEntries.last
-				val entry = new BasicTimetableEntry(train, track, prev, arrival, departure, remark)
+				val entry = new TimetableEntry(train, track, prev, arrival, departure, remark)
 				
 				if(prev != null) {
-					if(prev instanceof BasicTimetableEntry) {
+					if(prev instanceof TimetableEntry) {
 						prev.next = entry	
 					}
 				}

@@ -3,10 +3,10 @@ package de.altimos.fremo.timetable.basic
 import java.util.ArrayList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import de.altimos.fremo.timetable.TimetableEntry
-import de.altimos.fremo.timetable.Train
+import de.altimos.fremo.timetable.ITimetableEntry
+import de.altimos.fremo.timetable.ITrain
 
-class BasicTrain implements Train {
+class Train implements ITrain {
 	
 	@Accessors(PUBLIC_GETTER)
 	var int number
@@ -18,7 +18,7 @@ class BasicTrain implements Train {
 	var String remark
 	
 	@Accessors(PUBLIC_GETTER)
-	val List<TimetableEntry> timetableEntries = new ArrayList
+	val List<ITimetableEntry> timetableEntries = new ArrayList
 	
 	new(int number, String name, String remark) {
 		this.name = name
