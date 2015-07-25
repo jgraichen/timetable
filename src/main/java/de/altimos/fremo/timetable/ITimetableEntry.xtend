@@ -10,4 +10,6 @@ interface ITimetableEntry {
 	def String getRemark()
 	def ITimetableEntry getNext()
 	def ITimetableEntry getPrev()
+	def ITrain getCoachTransfer()
+	def ITrain getEngineTransfer()
 }

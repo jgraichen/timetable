@@ -1,48 +1,130 @@
 package de.altimos.fremo.timetable.serializer
 
-import de.altimos.fremo.timetable.ITimetable
-import de.altimos.fremo.timetable.basic.TimetableBuilder
+import de.altimos.fremo.timetable.basic.Station
+import de.altimos.fremo.timetable.basic.Timetable
+import de.altimos.fremo.timetable.basic.TimetableEntry
 import de.altimos.fremo.timetable.basic.Track
+import de.altimos.fremo.timetable.basic.Train
 import org.junit.BeforeClass
 import org.junit.Test
 
 import static org.junit.Assert.*
+import static extension de.altimos.fremo.timetable.TimetableExtensions.*
 
 class BFOSerializerTest {
 	
-	var static ITimetable timetable
+	var static Timetable timetable
 	
 	@BeforeClass
 	def static void setupTimetable() {
-		val builder = new TimetableBuilder => [
-			addStation("Lwa", "Leipzig-Wahren") => [
-				tracks += new Track(it, "1", "")
-				tracks += new Track(it, "2", "")
-				tracks += new Track(it, "3", "")
-				tracks += new Track(it, "4", "")
-				tracks += new Track(it, "5", "")
-				tracks += new Track(it, "6", "")
-			]
+		timetable = new Timetable
+		timetable => [
+			add(new Station => [
+				name   = "Gr"
+				remark = "Görlitz"
+				
+				add(new Track => [ name = "1" ])
+				add(new Track => [ name = "2" ])
+				add(new Track => [ name = "3" ])
+				add(new Track => [ name = "4" ])
+				add(new Track => [ name = "5" ])
+				add(new Track => [ name = "6" ])
+			])
+			add(new Station => [
+				name = "Jwz"
+				remark = "Jannowitz"
+				
+				add(new Track => [ name = "1" ])
+				add(new Track => [ name = "2" ])
+				add(new Track => [ name = "3" ])
+			])
+			add(new Station => [
+				name = "Pst"
+				remark = "Posthausen"
+				
+				add(new Track => [ name = "1" ])
+				add(new Track => [ name = "2" ])
+			])
+			add(new Station => [
+				name = "Drp"
+				remark = "Dörpfen"
+				
+				add(new Track => [ name = "1" ])
+				add(new Track => [ name = "2" ])
+				add(new Track => [ name = "3" ])
+				add(new Track => [ name = "4" ])
+				add(new Track => [ name = "112" ])
+				add(new Track => [ name = "113" ])
+			])
+			add(new Station => [
+				name = "Lwa"
+				remark = "Leipzig-Wahren"
+				
+				add(new Track => [ name = "1" ])
+				add(new Track => [ name = "2" ])
+				add(new Track => [ name = "3" ])
+				add(new Track => [ name = "4" ])
+				add(new Track => [ name = "5" ])
+				add(new Track => [ name = "6" ])
+				add(new Track => [ name = "7" ])
+				add(new Track => [ name = "8" ])
+			])
+			add(new Station => [
+				name = "Lbw"
+				remark = "Leipzig-Betriebswerk"
+				
+				add(new Track => [ name = "1" ])
+			])
 			
-			addStation("Jwz", "Jannowitz") => [
-				tracks += new Track(it, "1", "")
-				tracks += new Track(it, "2", "")
-				tracks += new Track(it, "3", "")
-			]
+			push(new Train => [
+				number = 77001
+				name = "Tfzf 77001"
+				
+				add(new TimetableEntry => [
+					track = timetable.findTrack("Lwa", "8") as Track
+					departure = "06:02"
+				])
+				add(new TimetableEntry => [
+					track = timetable.findTrack("Lbw", "1") as Track
+					arrival = "06:08"
+					remark = "Tfz abstellen"
+				])
+			])
 			
-			addStation("Pst", "Posthausen") => [
-				tracks += new Track(it, "1", "")
-				tracks += new Track(it, "2", "")
-			]
-			
-			addTrain(61, "FD 61", "Fernschnellzug")
-			
-			addTimetableEntry("FD 61", "Lwa", "1", "05:11", "05:11", "")
-			addTimetableEntry("FD 61", "Jwz", "2", "05:18", "05:18", "")
-			addTimetableEntry("FD 61", "Pst", "2", "05:34", "05:38", "")
+			push(new Train => [
+				number = 61
+				name = "FD 61"
+				remark = "Fernschnellzug Leipzig-Görlitz"	
+				
+				add(new TimetableEntry => [
+					track = timetable.stations.get(0).tracks.get(0) as Track
+					arrival = "05:11"
+					departure = "05:11"
+				])
+				add(new TimetableEntry => [
+					track = timetable.stations.get(1).tracks.get(1) as Track
+					arrival = "05:18"
+					departure = "05:18"
+					remark = "Fernschnellzug. Wichtig!"
+				])
+				add(new TimetableEntry => [
+					track = timetable.stations.get(2).tracks.get(1) as Track
+					arrival = "05:34"
+					departure = "05:34"
+				])
+				add(new TimetableEntry => [
+					track = timetable.stations.get(3).tracks.get(2) as Track
+					arrival = "05:45"
+					departure = "05:47"
+				])
+				add(new TimetableEntry => [
+					track = timetable.stations.get(4).tracks.get(7) as Track
+					arrival = "05:50"
+					engineTransfer = timetable.trains.get(0) as Train
+					remark = "Wagen ausstellen"
+				])
+			])
 		]
-		
-		timetable = builder.build
 	}
 	
 	@Test
@@ -52,10 +134,21 @@ class BFOSerializerTest {
 		
 		assertTrue(lines.length == 1)
 		
-		val values = lines.get(0).split("\t")
-		
-		assertEquals("", values.get(0))
-		assertEquals("5:11", values.get(1))
+		lines.get(0).split("\t", -1) => [
+			assertEquals(11, length)
+			
+			assertEquals("", get(0))
+			assertEquals("5:11", get(1))
+			assertEquals("FD 61", get(2))
+			assertEquals("", get(3))
+			assertEquals("", get(4))
+			assertEquals("1", get(5))
+			assertEquals("", get(6))
+			assertEquals("Jwz", get(7))
+			assertEquals("", get(8))
+			assertEquals("", get(9))
+			assertEquals("", get(10))
+		]
 	}
 	
 	@Test
@@ -65,20 +158,44 @@ class BFOSerializerTest {
 		
 		assertTrue(lines.length == 1)
 		
-		val values = lines.get(0).split("\t")
-		assertEquals("-->", values.get(0))
-		assertEquals("5:18", values.get(1))
+		lines.get(0).split("\t", -1) => [
+			assertEquals(11, length)
+			
+			assertEquals("-->", get(0))
+			assertEquals("5:18", get(1))
+			assertEquals("FD 61", get(2))
+			assertEquals("", get(3))
+			assertEquals("", get(4))
+			assertEquals("2", get(5))
+			assertEquals("Gr", get(6))
+			assertEquals("Pst", get(7))
+			assertEquals("", get(8))
+			assertEquals("", get(9))
+			assertEquals("Fernschnellzug. Wichtig!", get(10))
+		]
 	}
 	
 	@Test
-	def void testSerializeHaltStation() {
-		val text = new BFOSerializer().serialize(timetable.stations.get(2))
+	def void testSerializeDestinationStation() {
+		val text = new BFOSerializer().serialize(timetable.stations.get(4))
 		val lines = text.split("\n")
 		
-		assertTrue(lines.length == 1)
+		assertTrue(lines.length >= 1)
 		
-		val values = lines.get(0).split("\t")
-		assertEquals("5:34", values.get(0))
-		assertEquals("5:38", values.get(1))
+		lines.get(0).split("\t", -1) => [
+			assertEquals(11, length)
+			
+			assertEquals("5:50", get(0))
+			assertEquals("", get(1))
+			assertEquals("FD 61", get(2))
+			assertEquals("", get(3))
+			assertEquals("", get(4))
+			assertEquals("8", get(5))
+			assertEquals("Drp", get(6))
+			assertEquals("", get(7))
+			assertEquals("", get(8))
+			assertEquals("Tfzf 77001", get(9))
+			assertEquals("Wagen ausstellen", get(10))
+		]
 	}
 }

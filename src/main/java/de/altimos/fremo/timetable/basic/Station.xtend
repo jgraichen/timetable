@@ -9,20 +9,25 @@ import de.altimos.fremo.timetable.ITrack
 
 class Station implements IStation {
 	
-	@Accessors(PUBLIC_GETTER)
+	@Accessors
 	var String name
 	
-	@Accessors(PUBLIC_GETTER)
+	@Accessors
 	var String remark
+	
+	@Accessors
+	var Timetable timetable
 	
 	@Accessors(PUBLIC_GETTER)
 	val List<ITrack> tracks = new ArrayList
 	
-	@Accessors(PUBLIC_GETTER)
-	val List<ITimetableEntry> timetableEntries = new ArrayList
+	override getTimetableEntries() {
+		timetable.trains.map[timetableEntries.filter[track.station === this]].flatten
+	}
 	
-	new(String name, String remark) {
-		this.name = name
-		this.remark = remark
+	def add(Track track) {
+		track.station = this
+		
+		tracks += track
 	}
 }

@@ -1,19 +1,21 @@
 package de.altimos.fremo.timetable.importer
 
+import de.altimos.fremo.timetable.ITimetable
 import org.jopendocument.util.TimeUtils
 import org.junit.Test
 
 import static org.junit.Assert.*
-import org.junit.BeforeClass
-import de.altimos.fremo.timetable.basic.Timetable
 
 class XplnImporterTest {
 	
-	var static Timetable timetable
+	var static ITimetable _timetable
 	
-	@BeforeClass
-	def static void getTimetable() {
-		timetable = new XplnImporter().load(XplnImporterTest.getResource("large_xpln.ods"))
+	def static getTimetable() {
+		if(_timetable == null) {
+			_timetable = new XplnImporter().load(XplnImporterTest.getResource("large_xpln.ods"))	
+		}
+		
+		_timetable
 	}
 	
 	@Test

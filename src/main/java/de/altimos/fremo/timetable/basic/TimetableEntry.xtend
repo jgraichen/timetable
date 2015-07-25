@@ -1,49 +1,44 @@
 package de.altimos.fremo.timetable.basic
 
-import org.eclipse.xtend.lib.annotations.Accessors
-import javax.xml.datatype.Duration
 import de.altimos.fremo.timetable.ITimetableEntry
-import de.altimos.fremo.timetable.ITrack
-import de.altimos.fremo.timetable.ITrain
+import javax.xml.datatype.Duration
+import org.eclipse.xtend.lib.annotations.Accessors
 import de.altimos.fremo.timetable.Util
 
 class TimetableEntry implements ITimetableEntry {
 	
-	@Accessors(PUBLIC_GETTER)
-	var ITrain train
+	@Accessors
+	var Train train
 	
-	@Accessors(PUBLIC_GETTER)
-	var ITrack track
+	@Accessors
+	var Track track
 	
-	@Accessors(PUBLIC_GETTER)
+	@Accessors
 	var Duration arrival
 	
-	@Accessors(PUBLIC_GETTER)
+	@Accessors
 	var Duration departure
 	
-	@Accessors(PUBLIC_GETTER)
+	@Accessors
 	var String remark
 	
-	@Accessors(PUBLIC_GETTER)
-	var ITimetableEntry prev
+	@Accessors
+	var TimetableEntry prev
 	
-	@Accessors(PUBLIC_GETTER)
-	var ITimetableEntry next
+	@Accessors
+	var TimetableEntry next
 	
-	new(ITrain train, ITrack track, ITimetableEntry prev, Duration arrival, Duration departure, String remark) {
-		this.train = train
-		this.track = track
-		this.arrival = arrival
-		this.departure = departure
-		this.remark = remark
-		this.prev = prev
+	@Accessors
+	var Train coachTransfer
+	
+	@Accessors
+	var Train engineTransfer
+	
+	def setArrival(String arrival) {
+		arrival = Util.parseTime(arrival)
 	}
 	
-	new(ITrain train, ITrack track, ITimetableEntry prev, String arrival, String departure, String remark) {
-		this(train, track, prev, Util.parseTime(arrival), Util.parseTime(departure), remark)
-	}
-	
-	def setNext(ITimetableEntry entry) {
-		this.next = entry
+	def setDeparture(String departure) {
+		departure = Util.parseTime(departure)
 	}
 }
