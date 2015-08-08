@@ -14,6 +14,8 @@ import org.jopendocument.dom.spreadsheet.Cell
 import org.jopendocument.dom.spreadsheet.Sheet
 import org.jopendocument.dom.spreadsheet.SpreadSheet
 
+import static extension de.altimos.fremo.timetable.TimetableExtensions.*
+
 class XplnImporter {
 	
 	val timetable = new Timetable
@@ -43,21 +45,21 @@ class XplnImporter {
 	def private loadStationTrackCell(Sheet it, int rowIndex, Cell<SpreadSheet> cell) {
 		switch cell.value {
 			case "Station": {
-				val name   = getCellAt(0, rowIndex).value.toString
-				val remark = getCellAt(4, rowIndex).value.toString
+				val abbr = getCellAt(0, rowIndex).value.toString
+				val name = getCellAt(4, rowIndex).value.toString
 				
 				val station = new Station => [
-					it.name   = name
-					it.remark = remark
+					it.name         = name
+					it.abbreviation = abbr
 				]
 				
 				timetable.add(station)
 			}
 			case "Track": {
-				val stationName = getCellAt(0, rowIndex).value.toString
-				val name        = getCellAt(2, rowIndex).value.toString
-				val remark      = getCellAt(7, rowIndex).value.toString
-				val station     = timetable.stations.findFirst[ it.name == stationName ] as Station
+				val abbr    = getCellAt(0, rowIndex).value.toString
+				val name    = getCellAt(2, rowIndex).value.toString
+				val remark  = getCellAt(7, rowIndex).value.toString
+				val station = timetable.findStation(abbr) as Station
 				
 				val track = new Track => [
 					it.name    = name
@@ -93,15 +95,14 @@ class XplnImporter {
 			}
 			case "timetable": {
 				val trainNumber = Integer.parseInt(getCellAt(0, rowIndex).value.toString)
-				val stationName = getCellAt(2, rowIndex).value.toString
+				val stationAbbr = getCellAt(2, rowIndex).value.toString
 				val trackName   = getCellAt(3, rowIndex).value.toString
 				val arrival     = Util.parseTime(getCellAt(4, rowIndex).value)
 				val departure   = Util.parseTime(getCellAt(5, rowIndex).value)
 				val remark      = getCellAt(10, rowIndex).value.toString
 
-				val train   = timetable.trains.findFirst[ number == trainNumber ] as Train
-				val station = timetable.stations.findFirst[ name == stationName ] as Station
-				val track   = station.tracks.findFirst[ name == trackName ] as Track
+				val train   = timetable.findTrain(trainNumber) as Train
+				val track   = timetable.findTrack(stationAbbr, trackName) as Track
 				
 				val timetableEntry = new TimetableEntry => [
 					it.train = train

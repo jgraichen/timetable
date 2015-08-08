@@ -45,7 +45,7 @@ class XplnImporterTest {
 				
 				assertSame(timetable.trains.get(0), train)
 				assertEquals("6", track.name)
-				assertEquals("Gr", track.station.name)
+				assertEquals("Gr", track.station.abbreviation)
 				
 				assertSame(null, prev)
 				assertSame(te.get(1), next)
@@ -58,8 +58,8 @@ class XplnImporterTest {
 		assertEquals(16, timetable.stations.length)
 		
 		timetable.stations.get(0) => [
-			assertEquals("LWa", name)
-			assertEquals("Leipzig-Wahren", remark)
+			assertEquals("LWa", abbreviation)
+			assertEquals("Leipzig-Wahren", name)
 		]
 	}
 	
@@ -68,7 +68,7 @@ class XplnImporterTest {
 		assertEquals(16, timetable.stations.length)
 		
 		timetable.stations.get(0) => [
-			assertEquals("LWa", name)
+			assertEquals("LWa", abbreviation)
 			assertEquals(8, tracks.length)
 			
 			tracks.get(0) => [

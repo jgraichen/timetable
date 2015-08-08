@@ -20,8 +20,8 @@ class BFOSerializerTest {
 		timetable = new Timetable
 		timetable => [
 			add(new Station => [
-				name   = "Gr"
-				remark = "Görlitz"
+				abbreviation = "Gr"
+				name = "Görlitz"
 				
 				add(new Track => [ name = "1" ])
 				add(new Track => [ name = "2" ])
@@ -31,23 +31,23 @@ class BFOSerializerTest {
 				add(new Track => [ name = "6" ])
 			])
 			add(new Station => [
-				name = "Jwz"
-				remark = "Jannowitz"
+				abbreviation = "Jwz"
+				name = "Jannowitz"
 				
 				add(new Track => [ name = "1" ])
 				add(new Track => [ name = "2" ])
 				add(new Track => [ name = "3" ])
 			])
 			add(new Station => [
-				name = "Pst"
-				remark = "Posthausen"
+				abbreviation = "Pst"
+				name = "Posthausen"
 				
 				add(new Track => [ name = "1" ])
 				add(new Track => [ name = "2" ])
 			])
 			add(new Station => [
-				name = "Drp"
-				remark = "Dörpfen"
+				abbreviation = "Drp"
+				name = "Dörpfen"
 				
 				add(new Track => [ name = "1" ])
 				add(new Track => [ name = "2" ])
@@ -57,8 +57,8 @@ class BFOSerializerTest {
 				add(new Track => [ name = "113" ])
 			])
 			add(new Station => [
-				name = "Lwa"
-				remark = "Leipzig-Wahren"
+				abbreviation = "Lwa"
+				name = "Leipzig-Wahren"
 				
 				add(new Track => [ name = "1" ])
 				add(new Track => [ name = "2" ])
@@ -70,8 +70,8 @@ class BFOSerializerTest {
 				add(new Track => [ name = "8" ])
 			])
 			add(new Station => [
-				name = "Lbw"
-				remark = "Leipzig-Betriebswerk"
+				abbreviation = "Lbw"
+				name = "Leipzig-Betriebswerk"
 				
 				add(new Track => [ name = "1" ])
 			])

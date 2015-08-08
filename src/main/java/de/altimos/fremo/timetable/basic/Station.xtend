@@ -12,7 +12,7 @@ class Station implements IStation {
 	var String name
 	
 	@Accessors
-	var String remark
+	var String abbreviation
 	
 	@Accessors
 	var Timetable timetable

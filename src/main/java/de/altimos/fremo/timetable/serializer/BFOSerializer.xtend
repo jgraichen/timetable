@@ -61,7 +61,7 @@ class BFOSerializer {
 	
 	def private startStationString(ITimetableEntry it) {
 		if(prev != null) {
-			prev.track.station.remark
+			prev.track.station.name
 		} else {
 			""
 		}
@@ -69,7 +69,7 @@ class BFOSerializer {
 	
 	def private destinationStationString(ITimetableEntry it) {
 		if(next != null) {
-			next.track.station.remark
+			next.track.station.name
 		} else {
 			""
 		}
