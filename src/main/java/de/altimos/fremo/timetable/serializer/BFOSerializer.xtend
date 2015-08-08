@@ -3,7 +3,6 @@ package de.altimos.fremo.timetable.serializer
 import de.altimos.fremo.timetable.IStation
 import de.altimos.fremo.timetable.ITimetableEntry
 import java.util.ArrayList
-import de.altimos.fremo.timetable.ITimetable
 
 class BFOSerializer {
 	val static EMPTY = ""
@@ -62,7 +61,7 @@ class BFOSerializer {
 	
 	def private startStationString(ITimetableEntry it) {
 		if(prev != null) {
-			prev.track.station.name
+			prev.track.station.remark
 		} else {
 			""
 		}
@@ -70,7 +69,7 @@ class BFOSerializer {
 	
 	def private destinationStationString(ITimetableEntry it) {
 		if(next != null) {
-			next.track.station.name
+			next.track.station.remark
 		} else {
 			""
 		}
