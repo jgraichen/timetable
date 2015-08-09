@@ -5,4 +5,5 @@ interface IStation {
 	def String getAbbreviation()
 	def Iterable<ITrack> getTracks()
 	def Iterable<ITimetableEntry> getTimetableEntries()
+	def Iterable<IRoute> getRoutes()
 }

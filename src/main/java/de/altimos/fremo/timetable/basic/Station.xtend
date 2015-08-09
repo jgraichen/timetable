@@ -5,6 +5,7 @@ import de.altimos.fremo.timetable.ITrack
 import java.util.ArrayList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
+import de.altimos.fremo.timetable.IRoute
 
 class Station implements IStation {
 	
@@ -19,6 +20,9 @@ class Station implements IStation {
 	
 	@Accessors(PUBLIC_GETTER)
 	val List<ITrack> tracks = new ArrayList
+	
+	@Accessors(PUBLIC_GETTER)
+	val List<IRoute> routes = new ArrayList
 	
 	override getTimetableEntries() {
 		timetable.trains.map[timetableEntries.filter[track.station === this]].flatten
