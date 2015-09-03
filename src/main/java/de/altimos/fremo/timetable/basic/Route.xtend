@@ -1,9 +1,8 @@
 package de.altimos.fremo.timetable.basic
 
 import de.altimos.fremo.timetable.IRoute
-import org.eclipse.xtend.lib.annotations.Accessors
 import de.altimos.fremo.timetable.IStation
-import javax.xml.datatype.Duration
+import org.eclipse.xtend.lib.annotations.Accessors
 
 class Route implements IRoute {
 	
@@ -14,7 +13,7 @@ class Route implements IRoute {
 	var IStation destination
 	
 	@Accessors
-	var Duration travelDuration
+	var int travelDuration
 	
 	@Accessors
 	var int trackCount

@@ -15,6 +15,8 @@ import org.jopendocument.dom.spreadsheet.Sheet
 import org.jopendocument.dom.spreadsheet.SpreadSheet
 
 import static extension de.altimos.fremo.timetable.TimetableExtensions.*
+import de.altimos.fremo.timetable.basic.Route
+import java.math.BigDecimal
 
 class XplnImporter {
 	
@@ -29,6 +31,7 @@ class XplnImporter {
 		
 		SpreadSheet.get(new ODPackage(in)) => [
 			getSheet("StationTrack", true) => [ loadStationTracks ]
+			getSheet("Routes", true) => [ loadRoutes ]
 			getSheet("Trains", true) => [ loadTrains ]
 		]
 		
@@ -69,6 +72,29 @@ class XplnImporter {
 				station.add(track)
 			}
 		}
+	}
+	
+	def private loadRoutes(Sheet sheet) {
+		(1 .. sheet.rowCount)
+			.takeWhile[ sheet.getCellAt(0, it).value instanceof BigDecimal ]
+			.forEach[ sheet.loadRouteCell(it) ]
+	}
+	
+	def private loadRouteCell(Sheet it, int rowIndex) {
+		val station     = timetable.findStation(getValueAt(2, rowIndex).toString) as Station
+		val destination = timetable.findStation(getValueAt(4, rowIndex).toString) as Station
+			
+		val route = new Route => [route|
+			route.speedLimit     = Integer.parseInt(getValueAt(6, rowIndex).toString)
+			route.trackCount     = Integer.parseInt(getValueAt(7, rowIndex).toString)
+			route.travelDuration = Integer.parseInt(getValueAt(8, rowIndex).toString)
+			
+			route.station     = station
+			route.destination = destination
+		]
+		
+		station.routes.add(route)
+		destination.routes.add(route)
 	}
 	
 	def private loadTrains(Sheet sheet) {

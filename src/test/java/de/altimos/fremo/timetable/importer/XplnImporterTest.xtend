@@ -94,4 +94,26 @@ class XplnImporterTest {
 			]
 		]
 	}
+	
+	@Test
+	def void testRouteParsing() {
+		assertTrue(timetable.stations.length > 0)
+		
+		val grl = timetable.stations.findFirst[abbreviation == "Gr"]
+		val jwz = timetable.stations.findFirst[abbreviation == "Jwz"]
+		
+		assertEquals(1, grl.routes.length)
+		assertEquals(3, jwz.routes.length)
+		
+		val route = jwz.routes.findFirst[destination == grl]
+		
+		assertSame(route, grl.routes.get(0))
+		
+		route => [
+			assertSame(jwz, station)
+			assertSame(grl, destination)
+			assertEquals(80, speedLimit)
+			assertEquals(7, travelDuration)
+		]
+	}
 }
