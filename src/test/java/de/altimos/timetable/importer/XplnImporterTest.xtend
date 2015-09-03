@@ -1,6 +1,6 @@
-package de.altimos.fremo.timetable.importer
+package de.altimos.timetable.importer
 
-import de.altimos.fremo.timetable.ITimetable
+import de.altimos.timetable.ITimetable
 import org.jopendocument.util.TimeUtils
 import org.junit.Test
 

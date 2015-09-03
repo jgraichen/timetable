@@ -1,9 +1,9 @@
-package de.altimos.fremo.timetable.basic
+package de.altimos.timetable.basic
 
-import de.altimos.fremo.timetable.ITimetableEntry
+import de.altimos.timetable.ITimetableEntry
+import de.altimos.timetable.Util
 import javax.xml.datatype.Duration
 import org.eclipse.xtend.lib.annotations.Accessors
-import de.altimos.fremo.timetable.Util
 
 class TimetableEntry implements ITimetableEntry {
 	

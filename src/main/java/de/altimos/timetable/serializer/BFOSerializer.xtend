@@ -1,7 +1,7 @@
-package de.altimos.fremo.timetable.serializer
+package de.altimos.timetable.serializer
 
-import de.altimos.fremo.timetable.IStation
-import de.altimos.fremo.timetable.ITimetableEntry
+import de.altimos.timetable.IStation
+import de.altimos.timetable.ITimetableEntry
 import java.util.ArrayList
 
 class BFOSerializer {

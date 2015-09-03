@@ -1,7 +1,7 @@
-package de.altimos.fremo.timetable.basic
+package de.altimos.timetable.basic
 
-import de.altimos.fremo.timetable.IRoute
-import de.altimos.fremo.timetable.IStation
+import de.altimos.timetable.IRoute
+import de.altimos.timetable.IStation
 import org.eclipse.xtend.lib.annotations.Accessors
 
 class Route implements IRoute {

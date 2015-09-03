@@ -1,4 +1,4 @@
-package de.altimos.fremo.timetable
+package de.altimos.timetable
 
 import org.jopendocument.util.TimeUtils
 import javax.xml.datatype.Duration

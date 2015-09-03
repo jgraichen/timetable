@@ -1,8 +1,8 @@
-package de.altimos.fremo.timetable.basic
+package de.altimos.timetable.basic
 
-import de.altimos.fremo.timetable.IStation
-import de.altimos.fremo.timetable.ITimetable
-import de.altimos.fremo.timetable.ITrain
+import de.altimos.timetable.IStation
+import de.altimos.timetable.ITimetable
+import de.altimos.timetable.ITrain
 import java.util.ArrayList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors

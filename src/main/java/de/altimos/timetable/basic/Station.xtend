@@ -1,11 +1,11 @@
-package de.altimos.fremo.timetable.basic
+package de.altimos.timetable.basic
 
-import de.altimos.fremo.timetable.IStation
-import de.altimos.fremo.timetable.ITrack
+import de.altimos.timetable.IRoute
+import de.altimos.timetable.IStation
+import de.altimos.timetable.ITrack
 import java.util.ArrayList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import de.altimos.fremo.timetable.IRoute
 
 class Station implements IStation {
 	

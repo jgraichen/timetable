@@ -1,4 +1,4 @@
-package de.altimos.fremo.timetable
+package de.altimos.timetable
 
 interface IRoute {
 	def IStation getDestination()

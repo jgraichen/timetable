@@ -1,12 +1,14 @@
-package de.altimos.fremo.timetable.importer
+package de.altimos.timetable.importer
 
-import de.altimos.fremo.timetable.ITimetable
-import de.altimos.fremo.timetable.Util
-import de.altimos.fremo.timetable.basic.Station
-import de.altimos.fremo.timetable.basic.Timetable
-import de.altimos.fremo.timetable.basic.TimetableEntry
-import de.altimos.fremo.timetable.basic.Track
-import de.altimos.fremo.timetable.basic.Train
+import de.altimos.timetable.ITimetable
+import de.altimos.timetable.Util
+import de.altimos.timetable.basic.Route
+import de.altimos.timetable.basic.Station
+import de.altimos.timetable.basic.Timetable
+import de.altimos.timetable.basic.TimetableEntry
+import de.altimos.timetable.basic.Track
+import de.altimos.timetable.basic.Train
+import java.math.BigDecimal
 import java.net.URL
 import java.nio.file.NoSuchFileException
 import org.jopendocument.dom.ODPackage
@@ -14,9 +16,7 @@ import org.jopendocument.dom.spreadsheet.Cell
 import org.jopendocument.dom.spreadsheet.Sheet
 import org.jopendocument.dom.spreadsheet.SpreadSheet
 
-import static extension de.altimos.fremo.timetable.TimetableExtensions.*
-import de.altimos.fremo.timetable.basic.Route
-import java.math.BigDecimal
+import static extension de.altimos.timetable.TimetableExtensions.*
 
 class XplnImporter {
 	

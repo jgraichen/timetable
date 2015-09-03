@@ -1,15 +1,16 @@
-package de.altimos.fremo.timetable.serializer
+package de.altimos.timetable.serializer
 
-import de.altimos.fremo.timetable.basic.Station
-import de.altimos.fremo.timetable.basic.Timetable
-import de.altimos.fremo.timetable.basic.TimetableEntry
-import de.altimos.fremo.timetable.basic.Track
-import de.altimos.fremo.timetable.basic.Train
+import de.altimos.timetable.basic.Station
+import de.altimos.timetable.basic.Timetable
+import de.altimos.timetable.basic.TimetableEntry
+import de.altimos.timetable.basic.Track
+import de.altimos.timetable.basic.Train
 import org.junit.BeforeClass
 import org.junit.Test
 
 import static org.junit.Assert.*
-import static extension de.altimos.fremo.timetable.TimetableExtensions.*
+
+import static extension de.altimos.timetable.TimetableExtensions.*
 
 class BFOSerializerTest {
 	

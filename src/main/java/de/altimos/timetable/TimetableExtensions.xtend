@@ -1,4 +1,4 @@
-package de.altimos.fremo.timetable
+package de.altimos.timetable
 
 class TimetableExtensions {
 	def static ITrain findTrain(ITimetable it, int trainNumber) {
