@@ -6,10 +6,13 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'application'
 
-group 'de.altimos.fremo.tt'
+group 'de.altimos.timetable'
 version '0.1.0-SNAPSHOT'
 
-mainClassName = "de.altimos.fremo.tt.Editor"
+mainClassName = "de.altimos.timetable.main.CLI"
+run { 
+	args System.getProperty("exec.args").split()    
+}
 
 repositories {
     mavenCentral()
@@ -24,7 +27,9 @@ dependencies {
 	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.8.+'
 	compile 'org.jopendocument:jOpenDocument:1.3+'
 
-    testCompile group: 'junit', name: 'junit', version: '4.+'
+    testCompile 'junit:junit:4.+'
+    testCompile 'org.testfx:testfx-core:4.0.+'
+    testCompile 'org.testfx:testfx-junit:4.0.+'
 }
 
 test {
