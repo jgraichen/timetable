@@ -1,16 +1,24 @@
 # timetable
 
-Small utility to convert XPLN timetables to RgZm/BFO.
+Collection of libraries and tools to work with timetables.
 
-## Usage
+## timetable-cli
+
+Small command line utility to convert XPLN timetables to RgZm/BFO.
+
+### Usage
 
 ```
-./bin/timetable convert <xpln> <output>
+./bin/timetable-cli convert <xpln> <output>
 ```
 
 This will create a RgZm configuration file and a BFO for each station based on given `<xpln>` file in `<output>` directory.
 
-On Windows you can use `timetable.bat`. As of now this tool is CLI only.
+On Windows you can use `timetable-cli.bat`.
+
+## timetable-core
+
+Shared library for loading and working with timetables, routes, stations, tracks and trains.
 
 ## Compile
 
@@ -27,7 +35,7 @@ cd timetable
 gradle distZip
 ```
 
-Extract zip from `build/distributions/` to whereever you want to install it.
+Extract zip from `<project>/build/distributions/`.
 
 ## TODO
 
