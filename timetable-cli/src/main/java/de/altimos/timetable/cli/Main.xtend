@@ -4,7 +4,11 @@ import de.altimos.timetable.importer.XplnImporter
 import de.altimos.timetable.serializer.BFOSerializer
 import de.altimos.timetable.serializer.RgZmSerializer
 import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStreamWriter
+import java.nio.charset.Charset
 import java.io.FileWriter
+import java.nio.charset.CodingErrorAction
 
 class Main {
 	def static void main(String[] args) {
@@ -32,15 +36,14 @@ class Main {
 				System.exit(1)
 			}
 			
-			val cfg = new File(folder, input.name + ".rgzm")
-			new FileWriter(cfg) => [
+			open(new File(folder, input.name + '.rgzm')) => [
 				write(new RgZmSerializer().serialize(timetable))
 				close
 			]
 			
 			timetable.stations.forEach[station|
 				val file = new File(folder, station.abbreviation + '.bfo')
-				new FileWriter(file) => [
+				open(file) => [
 					write(new BFOSerializer().serialize(station))
 					close
 				]
@@ -50,6 +53,13 @@ class Main {
 			System.err.println("Unknown command: " + args.get(0))
 			System.exit(1)
 		}
+	}
+	
+	def static open(File file) {
+		new OutputStreamWriter(
+			new FileOutputStream(file), 
+			Charset.forName("ISO-8859-15").newEncoder().onUnmappableCharacter(CodingErrorAction.REPLACE)
+		)
 	}
 	
 	def static void printUsage() {
