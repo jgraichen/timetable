@@ -1,12 +1,12 @@
-package de.altimos.timetable.main
+package de.altimos.timetable.cli
 
 import de.altimos.timetable.importer.XplnImporter
+import de.altimos.timetable.serializer.BFOSerializer
+import de.altimos.timetable.serializer.RgZmSerializer
 import java.io.File
 import java.io.FileWriter
-import de.altimos.timetable.serializer.RgZmSerializer
-import de.altimos.timetable.serializer.BFOSerializer
 
-class CLI {
+class Main {
 	def static void main(String[] args) {
 		println(args.join(" "))
 		

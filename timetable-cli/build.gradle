@@ -1,0 +1,22 @@
+plugins {
+  id "java"
+  id "eclipse"
+  id "org.xtend.xtend" version "0.4.14"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.9.+'
+    compile project(':timetable-core')
+
+    testCompile 'junit:junit:4.+'
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
