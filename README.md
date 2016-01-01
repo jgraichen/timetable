@@ -1,5 +1,7 @@
 # timetable
 
+[![Build Status](https://travis-ci.org/jgraichen/timetable.svg?branch=master)](https://travis-ci.org/jgraichen/timetable)
+
 Collection of libraries and tools to work with timetables.
 
 ## timetable-cli
