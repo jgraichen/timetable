@@ -83,11 +83,13 @@ class BFOSerializerTest {
 				
 				add(new TimetableEntry => [
 					track = timetable.findTrack("Lwa", "8") as Track
+					arrival = "06:02"
 					departure = "06:02"
 				])
 				add(new TimetableEntry => [
 					track = timetable.findTrack("Lbw", "1") as Track
 					arrival = "06:08"
+					departure = "06:08"
 					remark = "Tfz abstellen"
 				])
 			])
@@ -121,6 +123,7 @@ class BFOSerializerTest {
 				add(new TimetableEntry => [
 					track = timetable.stations.get(4).tracks.get(7) as Track
 					arrival = "05:50"
+					departure = "05:50"
 					engineTransfer = timetable.trains.get(0) as Train
 					remark = "Wagen ausstellen"
 				])
@@ -139,7 +142,7 @@ class BFOSerializerTest {
 			assertEquals(11, length)
 			
 			assertEquals("", get(0))
-			assertEquals("5:11", get(1))
+			assertEquals("5.11", get(1))
 			assertEquals("FD 61", get(2))
 			assertEquals("", get(3))
 			assertEquals("", get(4))
@@ -163,7 +166,7 @@ class BFOSerializerTest {
 			assertEquals(11, length)
 			
 			assertEquals("-->", get(0))
-			assertEquals("5:18", get(1))
+			assertEquals("5.18", get(1))
 			assertEquals("FD 61", get(2))
 			assertEquals("", get(3))
 			assertEquals("", get(4))
@@ -186,7 +189,7 @@ class BFOSerializerTest {
 		lines.get(0).split("\t", -1) => [
 			assertEquals(11, length)
 			
-			assertEquals("5:50", get(0))
+			assertEquals("5.50", get(0))
 			assertEquals("", get(1))
 			assertEquals("FD 61", get(2))
 			assertEquals("", get(3))

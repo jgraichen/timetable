@@ -32,10 +32,10 @@ class BFOSerializer {
 	def private arrivalString(ITimetableEntry it) {
 		if(arrival == null || prev == null) {
 			""
-		} else if(arrival == departure) {
+		} else if(next != null && arrival == departure) {
 			"-->"
 		} else {
-			arrival.hours + ":" + arrival.minutes
+			arrival.hours + "." + arrival.minutes
 		}
 	}
 	
@@ -43,7 +43,7 @@ class BFOSerializer {
 		if(departure == null || next == null) {
 			""
 		} else {
-			departure.hours + ":" + departure.minutes
+			departure.hours + "." + departure.minutes
 		}
 	}
 	
