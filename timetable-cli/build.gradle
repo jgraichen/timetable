@@ -3,7 +3,7 @@ plugins {
   id "eclipse"
   id "application"
   id "org.xtend.xtend" version "0.4.14"
-  id "com.github.johnrengelman.shadow" version "1.2.2"
+  id "com.github.johnrengelman.shadow" version "1.2.3"
 }
 
 mainClassName = "de.altimos.timetable.cli.Main"
