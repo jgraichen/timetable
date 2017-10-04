@@ -1,7 +1,7 @@
 plugins {
   id "java"
   id "eclipse"
-  id "org.xtend.xtend" version "0.4.14"
+  id "org.xtext.xtend" version "1.0.0"
 }
 
 repositories {
