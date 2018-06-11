@@ -2,7 +2,7 @@ plugins {
   id "java"
   id "eclipse"
   id "application"
-  id "org.xtext.xtend" version "1.0.0"
+  id "org.xtext.xtend" version "1.0.21"
   id "com.github.johnrengelman.shadow" version "1.2.3"
 }
 
@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.9.+'
+    compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.14.+'
     compile project(':timetable-core')
 
     testCompile 'junit:junit:4.+'
