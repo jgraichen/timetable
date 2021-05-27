@@ -2,8 +2,8 @@ plugins {
   id "java"
   id "eclipse"
   id "application"
-  id "org.xtext.xtend" version "2.0.5"
-  id "com.github.johnrengelman.shadow" version "4.0.2"
+  id "org.xtext.xtend" version "2.0.9-alpha.3"
+  id "com.github.johnrengelman.shadow" version "7.0.0"
 }
 
 mainClassName = "de.altimos.timetable.cli.Main"
@@ -15,10 +15,10 @@ repositories {
 }
 
 dependencies {
-    compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.18+'
-    compile project(':timetable-core')
+    implementation 'org.eclipse.xtend:org.eclipse.xtend.lib:2.25+'
+    implementation project(':timetable-core')
 
-    testCompile 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.+'
 }
 
 test {
