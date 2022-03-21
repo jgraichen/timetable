@@ -2,7 +2,7 @@ plugins {
   id "java"
   id "eclipse"
   id "application"
-  id "org.xtext.xtend" version "3.0.1"
+  id "org.xtext.xtend" version "3.0.2"
   id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
