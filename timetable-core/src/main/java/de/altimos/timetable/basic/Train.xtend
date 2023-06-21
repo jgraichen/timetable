@@ -25,7 +25,7 @@ class Train implements ITrain {
 		entry.train = this
 		entry.prev = last
 		
-		if(last != null) {
+		if(last !== null) {
 			last.next = entry
 		}
 		

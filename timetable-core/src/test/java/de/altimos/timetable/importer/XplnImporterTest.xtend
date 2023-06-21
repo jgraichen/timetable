@@ -11,7 +11,7 @@ class XplnImporterTest {
 	var static ITimetable _timetable
 	
 	def static getTimetable() {
-		if(_timetable == null) {
+		if(_timetable === null) {
 			_timetable = new XplnImporter().load(XplnImporterTest.getResource("large_xpln.ods"))	
 		}
 		

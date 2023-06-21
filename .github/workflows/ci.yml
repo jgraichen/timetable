@@ -6,7 +6,7 @@ on:
 jobs:
   rspec:
     name: "Java ${{ matrix.java }}"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     strategy:
       fail-fast: false
@@ -14,7 +14,7 @@ jobs:
         java:
           - "8"
           - "11"
-          - "16"
+          - "17"
 
     steps:
       - uses: actions/checkout@v3
@@ -28,5 +28,5 @@ jobs:
       - name: "Build"
         uses: eskatos/gradle-command-action@v2
         with:
-          gradle-version: "7.0.2"
+          gradle-version: "8.1"
           arguments: "build"
