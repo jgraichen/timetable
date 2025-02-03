@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.eclipse.xtend:org.eclipse.xtend.lib:2.25+'
+    implementation 'org.eclipse.xtend:org.eclipse.xtend.lib:2.37.0'
     implementation project(':timetable-core')
 
     testImplementation 'junit:junit:5.+'
