@@ -12,7 +12,6 @@ jobs:
       fail-fast: false
       matrix:
         java:
-          - "11"
           - "17"
 
     steps:
@@ -27,5 +26,5 @@ jobs:
       - name: "Build"
         uses: eskatos/gradle-command-action@v3
         with:
-          gradle-version: "8.1"
+          gradle-version: "8.14"
           arguments: "build"

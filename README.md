@@ -10,7 +10,7 @@ Small command line utility to convert XPLN timetables to RgZm/BFO.
 
 ### Usage
 
-```
+```shell
 ./bin/timetable-cli convert <xpln> <output>
 ```
 
@@ -31,7 +31,7 @@ Requirements:
 
 Clone repository and run gradle:
 
-```
+```shell
 git clone https://github.com/jgraichen/timetable
 cd timetable
 gradle distZip
