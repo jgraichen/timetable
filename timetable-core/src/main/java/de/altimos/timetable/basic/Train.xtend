@@ -20,7 +20,7 @@ class Train implements ITrain {
 	val List<TimetableEntry> timetableEntries = new ArrayList
 
 	def add(TimetableEntry entry) {
-		val last = timetableEntries.last
+		val last = timetableEntries.lastOrNull
 		
 		entry.train = this
 		entry.prev = last
